@@ -1,15 +1,20 @@
 package io.github.hbzhzw.utils.system
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.pm.PackageInfo
 import android.os.Bundle
+import android.provider.Settings
 import io.github.hbzhzw.utils.AppContext
 
 class SystemUtil {
     companion object {
         const val TAG = "SystemUtil"
+        private var hasPrivacy = true
         private var VERSION_CODE: Long? = null
         private var VERSION_NAME: String? = null
+        private var ANDROID_ID: String? = null
+        private var UUID: String? = null
 
         @JvmStatic
         fun getVerCode(): Long {
@@ -39,12 +44,40 @@ class SystemUtil {
             }
         }
 
+        @JvmStatic
         fun getMetaData(key: String): String? {
             return AppContext.context.packageManager?.let {
                 val appInfo = it.getApplicationInfo(AppContext.packageName(), 0)
                 val metaBundle: Bundle? = appInfo.metaData
                 metaBundle?.getString(key)
             }
+        }
+
+        @JvmStatic
+        @SuppressLint("HardwareIds")
+        fun getAndroidId(): String? {
+            if (ANDROID_ID == null && hasPrivacy) {
+                synchronized(SystemUtil::class.java) {
+                    if (ANDROID_ID == null) {
+                        ANDROID_ID = Settings.Secure.getString(AppContext.contentResolver(),
+                            Settings.Secure.ANDROID_ID)
+                    }
+                }
+            }
+            return ANDROID_ID
+        }
+
+        @JvmStatic
+        fun getUUID(): String {
+            if (UUID == null) {
+                synchronized(SystemUtil::class.java) {
+                    if (UUID == null) {
+                        UUID = java.util.UUID.fromString(
+                            System.currentTimeMillis().toString()).toString()
+                    }
+                }
+            }
+            return UUID ?: ""
         }
     }
 }

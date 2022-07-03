@@ -64,7 +64,6 @@ object ProcessLifecycleMgr: DefaultLifecycleObserver {
         }
     }
 
-
     interface IForegroudListener {
         fun onForeground()
         fun onBackground()

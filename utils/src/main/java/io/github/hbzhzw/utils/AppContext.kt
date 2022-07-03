@@ -2,6 +2,7 @@ package io.github.hbzhzw.utils
 
 import android.annotation.SuppressLint
 import android.app.Application
+import android.content.ContentResolver
 import android.content.Context
 import android.content.Intent
 import android.graphics.drawable.Drawable
@@ -46,5 +47,9 @@ object AppContext {
             addCategory(Intent.CATEGORY_LAUNCHER)
         }
         context.startActivity(intent)
+    }
+
+    fun contentResolver():  ContentResolver {
+        return context.contentResolver
     }
 }
