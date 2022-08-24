@@ -5,6 +5,7 @@ import android.app.Application
 import android.content.ContentResolver
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.graphics.drawable.Drawable
 import androidx.core.content.res.ResourcesCompat
 import io.github.hbzhzw.utils.lifecycle.ActivityMgr
@@ -51,5 +52,9 @@ object AppContext {
 
     fun contentResolver():  ContentResolver {
         return context.contentResolver
+    }
+
+    fun packageMgr(): PackageManager {
+        return context.packageManager
     }
 }
