@@ -17,18 +17,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        ProcessLifecycleMgr.addListener(object: ProcessLifecycleMgr.IForegroudListener {
-            override fun onForeground() {
-                Loger.i(TAG, "onAppForeground ...")
-            }
-
-            override fun onBackground() {
-                Loger.i(TAG, "onAppBackground ...")
-            }
-        })
         super.onCreate(savedInstanceState)
-        AppContext.init(application)
-
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
