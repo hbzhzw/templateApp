@@ -43,8 +43,8 @@ object AppContext {
 
     fun startActivity(intent: Intent) {
         intent.apply {
-            setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
-            setAction(Intent.ACTION_MAIN)
+            flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
+            action = Intent.ACTION_MAIN
             addCategory(Intent.CATEGORY_LAUNCHER)
         }
         context.startActivity(intent)
