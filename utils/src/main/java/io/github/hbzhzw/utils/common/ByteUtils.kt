@@ -1,8 +1,5 @@
 package io.github.hbzhzw.utils.common
 
-import io.github.hbzhzw.loger.logI
-import java.lang.StringBuilder
-
 object ByteUtils {
     private const val TAG = "ByteUtils"
     private val HEX_CHAR = listOf('0', '1', '2', '3', '4', '5', '6',
